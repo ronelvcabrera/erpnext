@@ -473,7 +473,6 @@ class WorkOrder(Document):
 		if self.bom_no and self.qty:
 			item_dict = get_bom_items_as_dict(self.bom_no, self.company, qty=self.qty,
 				fetch_exploded = self.use_multi_level_bom)
-
 			if reset_only_qty:
 				for d in self.get("required_items"):
 					if item_dict.get(d.item_code):
@@ -484,13 +483,16 @@ class WorkOrder(Document):
 				for item in sorted(item_dict.values(), key=lambda d: d['idx'] or 9999):
 					self.append('required_items', {
 						'operation': item.operation,
+						'original_item': item.original_item,
 						'item_code': item.item_code,
 						'item_name': item.item_name,
 						'description': item.description,
 						'allow_alternative_item': item.allow_alternative_item,
+						'set_alternative_items': item.set_alternative_items,
 						'required_qty': item.qty,
 						'source_warehouse': item.source_warehouse or item.default_warehouse,
-						'include_item_in_manufacturing': item.include_item_in_manufacturing
+						'include_item_in_manufacturing': item.include_item_in_manufacturing,
+						'set_alternative_items': item.set_alternative_items
 					})
 
 					if not self.project:
