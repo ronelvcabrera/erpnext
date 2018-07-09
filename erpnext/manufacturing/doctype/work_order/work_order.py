@@ -66,8 +66,9 @@ class WorkOrder(Document):
 				where so.name=%s and so.docstatus = 1
 					and so.skip_delivery_note  = 0 and (
 					so_item.item_code=%s or
-					pk_item.item_code=%s )
-			""", (self.sales_order, self.production_item, self.production_item), as_dict=1)
+					pk_item.item_code=%s or
+					so_item.item_code=%s)
+			""", (self.sales_order, self.production_item, self.production_item, self.production_item+"T"), as_dict=1)
 
 			if not so:
 				so = frappe.db.sql("""
@@ -138,12 +139,12 @@ class WorkOrder(Document):
 
 		# get qty from Sales Order Item table
 		so_item_qty = frappe.db.sql("""select sum(stock_qty) from `tabSales Order Item`
-			where parent = %s and item_code = %s""",
-			(self.sales_order, self.production_item))[0][0]
+			where parent = %s and (item_code = %s or item_code = %s)""",
+			(self.sales_order, self.production_item, self.production_item+"T"))[0][0]
 		# get qty from Packing Item table
 		dnpi_qty = frappe.db.sql("""select sum(qty) from `tabPacked Item`
-			where parent = %s and parenttype = 'Sales Order' and item_code = %s""",
-			(self.sales_order, self.production_item))[0][0]
+			where parent = %s and parenttype = 'Sales Order' and (item_code = %s or item_code = %s)""",
+			(self.sales_order, self.production_item, self.production_item+"T"))[0][0]
 		# total qty in SO
 		so_qty = flt(so_item_qty) + flt(dnpi_qty)
 
