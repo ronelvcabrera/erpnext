@@ -643,8 +643,11 @@ class AccountsController(TransactionBase):
 						max_allowed_amt = abs(max_allowed_amt)
 
 					if total_billed_amt - max_allowed_amt > 0.01:
-						frappe.throw(_("Cannot overbill for Item {0} in row {1} more than {2}. To allow over-billing, please set allowance in Accounts Settings")
-							.format(item.item_code, item.idx, max_allowed_amt))
+						# ESO Change
+						# frappe.throw(_(
+						# 	"Cannot overbill for Item {0} in row {1} more than {2}. To allow over-billing, please set in Stock Settings").format(
+						# 	item.item_code, item.idx, max_allowed_amt))
+						pass
 
 	def get_company_default(self, fieldname):
 		from erpnext.accounts.utils import get_company_default
@@ -1216,11 +1219,12 @@ def update_child_qty_rate(parent_doctype, trans_items, parent_doctype_name, chil
 		child_item.qty = flt(d.get("qty"))
 		precision = child_item.precision("rate") or 2
 
-		if flt(child_item.billed_amt, precision) > flt(flt(d.get("rate")) * flt(d.get("qty")), precision):
-			frappe.throw(_("Row #{0}: Cannot set Rate if amount is greater than billed amount for Item {1}.")
-						 .format(child_item.idx, child_item.item_code))
-		else:
-			child_item.rate = flt(d.get("rate"))
+		# ESO Change to accept overbilling
+		# if flt(child_item.billed_amt) > (flt(d.get("rate")) * flt(d.get("qty"))):
+		# 	frappe.throw(_("Row #{0}: Cannot set Rate if amount is greater than billed amount for Item {1}.")
+		# 				 .format(child_item.idx, child_item.item_code))
+		# else:
+		child_item.rate = flt(d.get("rate"))
 
 		if flt(child_item.price_list_rate):
 			if flt(child_item.rate) > flt(child_item.price_list_rate):

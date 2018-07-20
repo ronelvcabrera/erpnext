@@ -197,20 +197,23 @@ class StatusUpdater(Document):
 			self.limits_crossed_error(args, item, qty_or_amount)
 
 	def limits_crossed_error(self, args, item, qty_or_amount):
-		'''Raise exception for limits crossed'''
-		if qty_or_amount == "qty":
-			action_msg = _('To allow over receipt / delivery, update "Over Receipt/Delivery Allowance" in Stock Settings or the Item.')
-		else:
-			action_msg = _('To allow over billing, update "Over Billing Allowance" in Accounts Settings or the Item.')
+		# '''Raise exception for limits crossed'''
+		# if qty_or_amount == "qty":
+		# 	action_msg = _('To allow over receipt / delivery, update "Over Receipt/Delivery Allowance" in Stock Settings or the Item.')
+		# else:
+		# 	action_msg = _('To allow over billing, update "Over Billing Allowance" in Accounts Settings or the Item.')
 
-		frappe.throw(_('This document is over limit by {0} {1} for item {4}. Are you making another {3} against the same {2}?')
-			.format(
-				frappe.bold(_(item["target_ref_field"].title())),
-				frappe.bold(item["reduce_by"]),
-				frappe.bold(_(args.get('target_dt'))),
-				frappe.bold(_(self.doctype)),
-				frappe.bold(item.get('item_code'))
-			) + '<br><br>' + action_msg, OverAllowanceError, title = _('Limit Crossed'))
+		# frappe.throw(_('This document is over limit by {0} {1} for item {4}. Are you making another {3} against the same {2}?')
+		# 	.format(
+		# 		frappe.bold(_(item["target_ref_field"].title())),
+		# 		frappe.bold(item["reduce_by"]),
+		# 		frappe.bold(_(args.get('target_dt'))),
+		# 		frappe.bold(_(self.doctype)),
+		# 		frappe.bold(item.get('item_code'))
+		# 	) + '<br><br>' + action_msg, OverAllowanceError, title = _('Limit Crossed'))
+
+		# ESO Change to allow over billing in accounting
+		pass
 
 	def update_qty(self, update_modified=True):
 		"""Updates qty or amount at row level
