@@ -2,7 +2,8 @@
 # License: GNU General Public License v3. See license.txt
 
 from __future__ import unicode_literals
-import frappe, erpnext
+import frappe
+import erpnext
 import json
 from frappe import _, throw
 from frappe.utils import today, flt, cint, fmt_money, formatdate, getdate, add_days, add_months, get_last_day, nowdate
@@ -16,11 +17,13 @@ from erpnext.accounts.party import get_party_account_currency, validate_party_fr
 from erpnext.exceptions import InvalidCurrency
 from six import text_type
 
-force_item_fields = ("item_group", "brand", "stock_uom", "is_fixed_asset", "item_tax_rate")
+force_item_fields = ("item_group", "brand", "stock_uom",
+                     "is_fixed_asset", "item_tax_rate")
 
 
 class AccountsController(TransactionBase):
 	def __init__(self, *args, **kwargs):
+		print("AccountsController init")
 		super(AccountsController, self).__init__(*args, **kwargs)
 
 	@property
@@ -56,13 +59,12 @@ class AccountsController(TransactionBase):
 				if not supplier.release_date or getdate(nowdate()) <= supplier.release_date:
 					frappe.msgprint(
 						_('{0} is blocked so this transaction cannot proceed'.format(supplier_name)), raise_exception=1)
-
+	
 	def validate(self):
-
 		self.validate_qty_is_not_zero()
 		if self.get("_action") and self._action != "update_after_submit":
 			self.set_missing_values(for_validate=True)
-
+			
 		self.ensure_supplier_is_not_blocked()
 
 		self.validate_date_with_fiscal_year()
@@ -1112,7 +1114,11 @@ def set_purchase_order_defaults(parent_doctype, parent_doctype_name, child_docna
 @frappe.whitelist()
 def update_child_qty_rate(parent_doctype, trans_items, parent_doctype_name, child_docname="items"):
 	data = json.loads(trans_items)
-
+	print("update_child_qty_rate")
+	print("parent_doctype")
+	print(parent_doctype)
+	print("parent_doctype_name")
+	print(parent_doctype_name)
 	parent = frappe.get_doc(parent_doctype, parent_doctype_name)
 
 	for d in data:

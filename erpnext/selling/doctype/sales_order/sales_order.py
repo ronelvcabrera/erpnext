@@ -30,8 +30,19 @@ class SalesOrder(SellingController):
 	def __init__(self, *args, **kwargs):
 		super(SalesOrder, self).__init__(*args, **kwargs)
 
+	# def check_items(self, signal = None):
+
+	# 	print(signal)
+	# 	for d in self.get('items'):
+	# 		print(d.item_code)
+	# 		print(d.blanket_order)
+
+	# 	print("DONE")
+	
 	def validate(self):
+		# self.check_items(signal= 'validate')
 		super(SalesOrder, self).validate()
+		# self.check_items(signal='validate_order_type')
 		self.validate_order_type()
 		self.validate_delivery_date()
 		self.validate_proj_cust()

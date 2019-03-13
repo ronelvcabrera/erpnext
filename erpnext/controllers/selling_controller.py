@@ -35,7 +35,18 @@ class SellingController(StockController):
 			for item in self.get("items"):
 				item.update(get_bin_details(item.item_code, item.warehouse))
 
+
+	# def check_items():
+
+	# 	print("selling controller")
+	# 	for d in self.get("items"):
+	# 		print(d.item_code)
+	# 		print(d.blanket_order)
+
+	# 	print("DONE")
+	
 	def validate(self):
+		# self.check_items()
 		super(SellingController, self).validate()
 		self.validate_items()
 		self.validate_max_discount()

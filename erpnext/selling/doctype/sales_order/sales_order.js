@@ -86,6 +86,14 @@ frappe.ui.form.on("Sales Order", {
 });
 
 frappe.ui.form.on("Sales Order Item", {
+	blanket_order:function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		let blanket_order = row.blanket_order;
+		console.log(blanket_order);
+		if(!blanket_order)
+			row.blanket_order_rate = null
+			refresh_field("blanket_order_rate", cdn, "items");
+	},
 	item_code: function(frm,cdt,cdn) {
 		var row = locals[cdt][cdn];
 		if (frm.doc.delivery_date) {
