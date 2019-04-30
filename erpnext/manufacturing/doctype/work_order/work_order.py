@@ -165,6 +165,11 @@ class WorkOrder(Document):
 
 		self.update_required_items()
 
+		if status == 'Completed':
+			from newmatik.services import pusher_trigger
+			if self.cell:
+				pusher_trigger('wo-display', 'wo-updated', {'message': self.cell})
+
 		return status
 
 	def get_status(self, status=None):
