@@ -537,6 +537,6 @@ def get_valuation_rate(item_code, warehouse, voucher_type, voucher_no,
 		sub_solutions += "<li>" + _("Mention Valuation Rate in the Item master.") + "</li></ul>"
 		msg = message + solutions + sub_solutions + "</li>"
 
-		frappe.throw(msg=msg, title=_("Valuation Rate Missing"))
+		# frappe.throw(msg=msg, title=_("Valuation Rate Missing"))
 
 	return valuation_rate
