@@ -711,6 +711,7 @@
       "label": "Payment Terms"
     },
     {
+      "allow_on_submit": 1,
       "fieldname": "payment_terms_template",
       "fieldtype": "Link",
       "label": "Payment Terms Template",
@@ -718,6 +719,7 @@
       "print_hide": 1
     },
     {
+      "allow_on_submit": 1,
       "fieldname": "payment_schedule",
       "fieldtype": "Table",
       "label": "Payment Schedule",
@@ -915,7 +917,7 @@
   "idx": 82,
   "is_submittable": 1,
   "max_attachments": 1,
-  "modified": "2019-08-30 15:35:24.873938",
+  "modified": "2019-10-23 12:35:29.351478",
   "modified_by": "Administrator",
   "module": "Selling",
   "name": "Quotation",
