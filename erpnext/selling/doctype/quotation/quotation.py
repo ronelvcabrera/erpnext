@@ -137,9 +137,10 @@ def _make_sales_order(source_name, target_doc=None, ignore_permissions=False):
 		if customer:
 			target.customer = customer.name
 			target.customer_name = customer.customer_name
-		if source.referral_sales_partner:
-			target.sales_partner=source.referral_sales_partner
-			target.commission_rate=frappe.get_value('Sales Partner', source.referral_sales_partner, 'commission_rate')
+		#ESO - Not existing field in Quotation
+		# if source.referral_sales_partner:
+		# 	target.sales_partner=source.referral_sales_partner
+		# 	target.commission_rate=frappe.get_value('Sales Partner', source.referral_sales_partner, 'commission_rate')
 		if target.tc_name:
 			target.tc_name = ''
 			target.terms = ''
