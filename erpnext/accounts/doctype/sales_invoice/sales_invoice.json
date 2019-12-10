@@ -1348,7 +1348,7 @@
       "in_standard_filter": 1,
       "label": "Status",
       "no_copy": 1,
-      "options": "\nDraft\nReturn\nCredit Note Issued\nSubmitted\nPaid\nUnpaid\nUnpaid and Discounted\nOverdue and Discounted\nOverdue\nOverdue\nCancelled",
+      "options": "\nDraft\nReturn\nCredit Note Issued\nSubmitted\nPaid\nUnpaid\nUnpaid and Discounted\nOverdue and Discounted\nOverdue\nCancelled",
       "print_hide": 1,
       "read_only": 1
     },
@@ -1570,7 +1570,7 @@
   "icon": "fa fa-file-text",
   "idx": 181,
   "is_submittable": 1,
-  "modified": "2019-10-24 05:33:18.982018",
+  "modified": "2019-12-10 05:33:18.982018",
   "modified_by": "Administrator",
   "module": "Accounts",
   "name": "Sales Invoice",
