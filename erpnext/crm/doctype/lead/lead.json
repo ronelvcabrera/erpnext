@@ -5,7 +5,6 @@
  "creation": "2013-04-10 11:45:37",
  "doctype": "DocType",
  "document_type": "Document",
- "email_append_to": 1,
  "engine": "InnoDB",
  "field_order": [
   "organization_lead",
@@ -436,6 +435,7 @@
   },
   {
    "default": "Billing",
+   "depends_on": "eval: doc.__islocal",
    "fieldname": "address_type",
    "fieldtype": "Select",
    "label": "Address Type",
@@ -445,8 +445,7 @@
  "icon": "fa fa-user",
  "idx": 5,
  "image_field": "image",
- "links": [],
- "modified": "2020-04-06 18:47:03.306414",
+ "modified": "2020-04-06 20:27:02.196957",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Lead",
@@ -506,7 +505,6 @@
   }
  ],
  "search_fields": "lead_name,lead_owner,status",
- "sender_field": "email_id",
  "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
