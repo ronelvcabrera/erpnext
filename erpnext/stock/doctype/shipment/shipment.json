@@ -52,6 +52,7 @@
   "column_break_36",
   "shipment_type",
   "pickup_type",
+  "incoterm",
   "description_of_content",
   "section_break_40",
   "shipment_information_section",
@@ -442,11 +443,17 @@
   {
    "fieldname": "column_break_55",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "incoterm",
+   "fieldtype": "Select",
+   "label": "Incoterm",
+   "options": "EXW (Ex Works)\nFCA (Free Carrier)\nCPT (Carriage Paid To)\nCIP (Carriage and Insurance Paid to)\nDPU (Delivered At Place Unloaded)\nDAP (Delivered At Place)\nDDP (Delivered Duty Paid)"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2020-07-13 15:33:15.395250",
+ "modified": "2020-07-24 11:44:30.904612",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Shipment",
