@@ -176,6 +176,7 @@ def update_tracking(shipment, service_provider, shipment_id, delivery_notes=[]):
 		frappe.db.set_value('Shipment', shipment, 'tracking_status', tracking_data.get('tracking_status'))
 		frappe.db.set_value('Shipment', shipment, 'tracking_status_info', tracking_data.get('tracking_status_info'))
 		frappe.db.set_value('Shipment', shipment, 'tracking_url', tracking_data.get('tracking_url'))
+	return tracking_data
 
 @frappe.whitelist()
 def get_address_name(ref_doctype, docname):
