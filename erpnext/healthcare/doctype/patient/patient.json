@@ -395,7 +395,7 @@
  "image_field": "image",
  "links": [],
  "max_attachments": 50,
- "modified": "2020-04-25 17:24:32.146415",
+ "modified": "2020-10-02 18:16:34.839751",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient",
@@ -447,6 +447,18 @@
    "read": 1,
    "report": 1,
    "role": "Nursing User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Doctor Admin",
    "share": 1,
    "write": 1
   }
